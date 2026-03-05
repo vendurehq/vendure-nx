@@ -31,7 +31,6 @@
               "omit": [
                   "^@angular",
                   "zone.js",
-                  "@vendure/ui-devkit",
                   "ngx-color-picker",
                   "codejar",
                   "apollo-angular",

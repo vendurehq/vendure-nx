@@ -1,0 +1,39 @@
+{
+  "name": "admin-dashboard",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/admin-dashboard/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "admin-dashboard:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "admin-dashboard:build:development"
+        },
+        "production": {
+          "buildTarget": "admin-dashboard:build:production"
+        }
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/admin-dashboard"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

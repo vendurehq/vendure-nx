@@ -46,3 +46,7 @@ vitest.config.*.timestamp*
 
 # E2E data
 libs/**/e2e/__data__/*.sqlite
+
+# Dashboard temp/generated files
+apps/admin-dashboard/__vendure-dashboard-temp
+apps/admin-dashboard/src/gql

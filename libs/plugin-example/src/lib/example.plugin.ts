@@ -1,8 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { LanguageCode, PluginCommonModule, VendurePlugin } from '@vendure/core';
 
-import { uiExtensions } from '../ui';
-
 import { EXAMPLE_PLUGIN_OPTIONS } from './constants';
 import { ExamplePluginInitOptions } from './types';
 import { ProductReview } from './entities/product-review.entity';
@@ -57,11 +55,10 @@ import { ProductReviewShopResolver } from './api/product-review-shop.resolver';
     });
     return config;
   },
+  dashboard: '../dashboard/index.tsx',
   compatibility: '^3.0.0',
 })
 export class ExamplePlugin {
-  static uiExtensions = uiExtensions;
-
   static options: ExamplePluginInitOptions = {};
 
   static init(options: ExamplePluginInitOptions) {

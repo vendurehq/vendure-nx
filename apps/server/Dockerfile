@@ -10,9 +10,7 @@ RUN npm install
 
 # Copy the rest of the source code and build
 COPY . .
-RUN npx nx build admin-ui --skip-nx-cache --verbose && npx nx build server --skip-nx-cache --verbose
-# Clean up unnecessary files
-RUN rm -rf dist/apps/admin-ui/.angular
+RUN npx nx build admin-dashboard --skip-nx-cache --verbose && npx nx build server --skip-nx-cache --verbose
 
 # Production stage
 FROM node:22-slim AS production-stage
@@ -24,7 +22,7 @@ WORKDIR /app
 
 # Copy only necessary files from the build stage
 COPY --from=build-stage /app/dist/apps/server ./dist/apps/server
-COPY --from=build-stage /app/dist/apps/admin-ui ./dist/apps/admin-ui
+COPY --from=build-stage /app/dist/apps/admin-dashboard ./dist/apps/admin-dashboard
 COPY --from=build-stage /app/dist/migrations ./dist/migrations
 
 # Install wget for health checks

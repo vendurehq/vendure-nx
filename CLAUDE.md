@@ -19,6 +19,7 @@ npm run dev:dashboard    # Dashboard dev mode (Vite HMR)
 npm run build            # Build server, dashboard, and worker
 npm run build:dashboard  # Build dashboard only
 npx nx build server      # Build individual target
+npm run build:dashboard  # Build dashboard only
 
 # Test
 npm test                 # All tests (parallel=1)

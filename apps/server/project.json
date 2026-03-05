@@ -36,7 +36,7 @@
           "executor": "nx:run-commands",
           "options": {
               "commands": [
-                  "npx ts-node -r tsconfig-paths/register --project apps/server/tsconfig.app.json apps/server/src/populate.ts"
+                  "npx ts-node -r tsconfig-paths/register --project tools/scripts/tsconfig.json tools/scripts/populate.ts"
               ]
           }
       },
@@ -59,8 +59,6 @@
               "omit": [
                   "^@angular",
                   "zone.js",
-                  "^@vendure/admin-ui$",
-                  "@vendure/ui-devkit",
                   "ngx-color-picker",
                   "codejar",
                   "apollo-angular",

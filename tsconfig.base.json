@@ -19,7 +19,9 @@
       "@vendure-nx/plugin-example": ["libs/plugin-example/src/index.ts"],
       "@vendure-nx/util-config": ["libs/util-config/src/index.ts"],
       "@vendure-nx/util-testing": ["libs/util-testing/src/index.ts"],
-      "vendure-nx": ["tools/vendure-nx/src/index.ts"]
+      "vendure-nx": ["tools/vendure-nx/src/index.ts"],
+      "@/gql": ["apps/admin-dashboard/src/gql/graphql.ts"],
+      "@/vdb/*": ["node_modules/@vendure/dashboard/src/lib/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
