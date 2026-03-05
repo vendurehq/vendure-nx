@@ -13,10 +13,11 @@ Vendure Nx Starter — an Nx integrated monorepo for a [Vendure](https://www.ven
 npm run dev              # Start server + worker together
 npm run dev:server       # Server only
 npm run dev:worker       # Worker only
-npm run dev:dashboard    # Dashboard Vite dev server
+npm run dev:dashboard    # Dashboard dev mode (Vite HMR)
 
 # Build
-npm run build            # Build server, admin-dashboard, and worker
+npm run build            # Build server, dashboard, and worker
+npm run build:dashboard  # Build dashboard only
 npx nx build server      # Build individual target
 npm run build:dashboard  # Build dashboard only
 
@@ -45,7 +46,7 @@ nx g vendure-nx:vendure-plugin-generator --name=MyPlugin --uiExtension=true
 apps/
   server/          # Vendure HTTP server (admin-api + shop-api), runs migrations on start
   worker/          # Vendure job queue worker (BullMQ), health check on port 3123
-  admin-dashboard/ # React-based Admin Dashboard (Vite + @vendure/dashboard)
+  admin-dashboard/ # React-based admin dashboard (Vite + @vendure/dashboard)
 libs/
   util-config/     # Shared VendureConfig imported by both server and worker
   util-testing/    # E2E test utilities, fixtures, test config
@@ -68,17 +69,15 @@ The shared `VendureConfig` in `libs/util-config` is used by both server and work
 
 Plugins live in `libs/plugin-<name>`. Each plugin has:
 - `lib/` — plugin class (`@VendurePlugin`), entities, resolvers, GraphQL schema extensions
-- `ui/` — Legacy Angular-based Admin UI extensions (to be migrated to React dashboard extensions)
-- `dashboard/` — React-based dashboard extensions (new pattern)
+- `dashboard/` — React-based dashboard extensions (TSX components using `@vendure/dashboard`)
 - `e2e/` — E2E tests using `@vendure/testing` with Vitest
 
-Register plugins in `libs/util-config/src/lib/vendure-config.ts` (plugins array). Dashboard extensions are auto-discovered by the `@vendure/dashboard` Vite plugin from the Vendure config.
+Register plugins in `libs/util-config/src/lib/vendure-config.ts` (plugins array). Dashboard extensions are auto-discovered from plugin `dashboard/` directories.
 
 ### Generated Files — Do Not Edit
 
 - `libs/*/src/lib/generated-admin-types.ts`
 - `libs/*/src/lib/generated-shop-types.ts`
-- `libs/*/src/ui/gql/`
 - `libs/*/src/e2e/graphql/gql-admin/` and `gql-shop/`
 
 Regenerate with `npx nx run <plugin>:codegen`.
